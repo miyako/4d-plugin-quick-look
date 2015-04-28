@@ -1,0 +1,1 @@
+﻿{"name":"Quick Look","id":20000,"commands":[{"theme":"Quick Look","syntax":"QL REQUEST PREVIEW(&T)"},{"theme":"Quick Look","syntax":"QL Get file thumbnail(&T;&8;&8):P"}]}
