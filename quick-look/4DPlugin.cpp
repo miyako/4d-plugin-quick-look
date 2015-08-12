@@ -47,33 +47,6 @@ void CommandDispatcher (PA_long32 pProcNum, sLONG_PTR *pResult, PackagePtr pPara
 	}
 }
 
-#define CMD_BLOB_TO_PICTURE 682  
-
-void setPicture(void *bytes, size_t len, C_PICTURE &image, const char *type)
-{
-    PA_Variable params[3];    
-    params[0] = PA_CreateVariable(eVK_Blob);
-    params[1] = PA_CreateVariable(eVK_Picture);
-    params[2] = PA_CreateVariable(eVK_Unistring);
-
-    PA_SetBlobVariable(&params[0], bytes, len);
-    
-    C_TEXT t;
-    t.setUTF8String((const uint8_t *)type, strlen(type));
-    PA_Unistring ext = PA_CreateUnistring((PA_Unichar *)t.getUTF16StringPtr());
-    PA_SetStringVariable(&params[2], &ext);
-    
-    PA_ExecuteCommandByID(CMD_BLOB_TO_PICTURE, params, 3);
-    
-    image.setPicture(PA_GetPictureVariable(params[1]));
-    
-    PA_DisposeUnistring(&ext);
-    
-    PA_ClearVariable(&params[2]);
-    PA_ClearVariable(&params[1]);    
-    PA_ClearVariable(&params[0]);
-}
-
 // ---------------------------------- Quick Look ----------------------------------
 
 void QL_REQUEST_PREVIEW(sLONG_PTR *pResult, PackagePtr pParams)
@@ -98,7 +71,6 @@ void QL_Get_file_thumbnail(sLONG_PTR *pResult, PackagePtr pParams)
 	C_TEXT Param1;
 	C_REAL Param2;
 	C_REAL Param3;
-	C_PICTURE returnValue;
 
 	Param1.fromParamAtIndex(pParams, 1);
 	Param2.fromParamAtIndex(pParams, 2);
@@ -122,10 +94,8 @@ void QL_Get_file_thumbnail(sLONG_PTR *pResult, PackagePtr pParams)
 			CGImageDestinationAddImage(destination, image, properties);
 			CGImageDestinationFinalize(destination);
             
-			setPicture((void *)CFDataGetBytePtr(data), CFDataGetLength(data), returnValue, ".tif");		
-        //  memory leak!!
-		//	returnValue.setBytes((const uint8_t *)CFDataGetBytePtr(data), CFDataGetLength(data));
-			returnValue.setReturn(pResult);
+            PA_Picture picture = PA_CreatePicture((void *)CFDataGetBytePtr(data), CFDataGetLength(data));
+            *(PA_Picture*) pResult = picture;
 			
             CFRelease(properties);	
             CFRelease(destination);
