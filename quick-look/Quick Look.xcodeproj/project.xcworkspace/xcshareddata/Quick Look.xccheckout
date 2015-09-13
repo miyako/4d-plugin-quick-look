@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>DA4C37A1-A87D-436F-932A-85F41C868F81</string>
 	<key>IDESourceControlProjectName</key>
-	<string>Quick Look</string>
+	<string>project</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>1779CB8FAE52C65928B9E15DA1B243C30587E616</key>
 		<string>https://github.com/miyako/4d-plugin-quick-look.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>quick-look/Quick Look.xcodeproj</string>
+	<string>quick-look/Quick Look.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>1779CB8FAE52C65928B9E15DA1B243C30587E616</key>
