@@ -18,7 +18,7 @@ QL_REQUEST_PREVIEW
 QL_Get_file_thumbnail
 ```
 
-Eaxmples
+Examples
 ---
 
 ```
