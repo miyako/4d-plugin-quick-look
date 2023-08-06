@@ -1,6 +1,5 @@
-4d-plugin-quick-look
-====================
+![deprecated](https://img.shields.io/badge/-deprecated-inactive)
 
-## Deprecated
+# 4d-plugin-quick-look
 
-Use https://github.com/miyako/4d-plugin-ql
+Use https://github.com/miyako/4d-plugin-ql-v2
